@@ -24,6 +24,11 @@ public class SubController {
 	    return (List<FmmOrgMTable>) tableMainRepository2.findAll();
 	 }
 	
+	@RequestMapping
+	public String ddd() {
+		return "";
+	}
+	
 	@RequestMapping(value = "/orgdesc")
 	public String Demo2(Model model , @RequestParam(value="name" ,defaultValue="xxxxxxxxxxxx") String test) {
 		List<FmmOrgMTable> listfmm=getAllData();

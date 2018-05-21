@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //import org.springframework.context.annotation.ComponentScan;
@@ -12,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.controller.Repositories.*;
-import com.controller.pojo.*;
+import com.controller.pojo.FmmInfrastructure;
+import com.controller.pojo.FmmOrgMTable;
+import com.controller.pojo.FmmPhotoInfrastruture;
+
+
 
 @Controller
 @EnableJpaRepositories
+//@RequestMapping("Subcontrol")
 //@ComponentScan("com.bd.service")
 public class HelloController {
 	
@@ -33,6 +37,8 @@ public List<FmmPhotoInfrastruture> getAllphotodata(){
 	
 }
 
+
+
 @RequestMapping(value="/photo")
 public String  photo(Model model , @RequestParam(value="name1", required=false ,defaultValue="orgsl not found" ) Long  test) {
 	List<FmmPhotoInfrastruture> fmmPhotoInfra=getAllphotodata();
@@ -48,6 +54,9 @@ public String  photo(Model model , @RequestParam(value="name1", required=false ,
 	public List<FmmInfrastructure> findByincharge(String incharge){
 		return fmmInfraRepository.findByincharge(incharge);
 	}
+	
+	
+	
 	
 	public List<FmmInfrastructure> findByorgSlNo(Long orgSlNo){
 		return  fmmInfraRepository.findByorgSlNo(orgSlNo);
@@ -66,6 +75,15 @@ public String  photo(Model model , @RequestParam(value="name1", required=false ,
 		model.addAttribute("test2", test2);
 		return "hello";
 	}
+	
+//	@RequestMapping(value="/hello" )
+//	public String hii(@RequestParam(value="name" ,defaultValue="Kuch Nahi mila") String name , @RequestParam("sirname") String sirname ,    Model model) {
+//		model.addAttribute("name", name);
+//		model.addAttribute("sirname", sirname);
+//		
+//	return "hello";
+//	}
+//	
 	
 	List<FmmOrgMTable> getAllData() {
 	    return (List<FmmOrgMTable>) tableMainRepository.findAll();
@@ -99,7 +117,7 @@ public String  photo(Model model , @RequestParam(value="name1", required=false ,
     	 test1 = listFmmorg.get(0).getOrgDesc();
     	
 		//"FmmOrgMTable";
-    	model.addAttribute("name", "Name: nakul this is test......for finding value of 25");
+    	model.addAttribute("name", "Name: nakul this is test1......for finding value of 25");
     	model.addAttribute("test" , "CRIS test this is test for finding db value of 25");
     	
     	
@@ -169,7 +187,6 @@ public String  photo(Model model , @RequestParam(value="name1", required=false ,
 
 @RequestMapping(value="/annexureB", method=RequestMethod.GET)
     public String page3(Model model)  {
-    	model.addAttribute("FmmOrgMTable");
     	return "layout/AnnexureB"; 
     }
     
@@ -205,7 +222,12 @@ public String  photo(Model model , @RequestParam(value="name1", required=false ,
     	return "layout/AnnexureD"; 
     }
     
+    @RequestMapping("/wagontype")
+    public String wagonType() {
+    	return "layout/WagonTypeInput";
+    	
+    }
     }
     
-  
+
     
